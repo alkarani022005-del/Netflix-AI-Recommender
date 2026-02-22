@@ -45,7 +45,7 @@ def recommend_movies(movie_title, num_recommendations=5):
 # FETCH POSTER
 # =========================
 def fetch_poster(movie_id):
-    api_key = st.secrets["TMDB_API_KEY"]
+    api_key = st.secrets["Ocb3cfcfee499772d8d1162d74eb97a6"]
 
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US"
     response = requests.get(url)

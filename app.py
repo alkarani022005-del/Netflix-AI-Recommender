@@ -39,16 +39,18 @@ def recommend_movies(movie_title, num_recommendations=5):
 # =========================
 # FETCH POSTER FUNCTION
 # =========================
-def fetch_poster(movie_name):
-    url = f"https://api.themoviedb.org/3/search/movie?api_key={API_KEY}&query={movie_name}"
+# TMDB POSTER FETCH
+def fetch_poster(movie_id):
+    api_key = "YOUR_API_KEY_HERE"
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US"
+    
     response = requests.get(url)
     data = response.json()
-
-    if data["results"]:
-        poster_path = data["results"][0].get("poster_path")
-        if poster_path:
-            return "https://image.tmdb.org/t/p/w500" + poster_path
-    return None
+    
+    if 'poster_path' in data and data['poster_path'] is not None:
+        return "https://image.tmdb.org/t/p/w500/" + data['poster_path']
+    else:
+        return "https://via.placeholder.com/500x750?text=No+Image"
 
 # =========================
 # NETFLIX STYLE CSS
